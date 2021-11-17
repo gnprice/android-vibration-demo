@@ -34,8 +34,10 @@ class FirstFragment : Fragment() {
 
         // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
 
-        bindVibrate(binding.buttonVibrateA, longArrayOf(0, 100, 50, 250)) // pretty good imitation of Zulip drumroll sound?
-        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 125, 75, 250))
+        bindVibrate(binding.buttonVibrateA, longArrayOf(0, 100, 50, 250))
+        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 125, 75, 250)) // best?
+        bindVibrate(binding.buttonVibrateC, longArrayOf(0, 125, 75, 175))
+        bindVibrate(binding.buttonVibrateD, longArrayOf(0, 125, 125, 250))
         bindVibrate(binding.buttonVibrateDefault, longArrayOf(0, 250, 250, 250)) // Android notif default
     }
 

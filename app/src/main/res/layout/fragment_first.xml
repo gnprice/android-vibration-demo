@@ -16,16 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_vibrate_a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vibrate_a"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_vibrate_b"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -34,14 +24,44 @@
         app:layout_constraintGuide_begin="249dp" />
 
     <Button
+        android:id="@+id/button_vibrate_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vibrate_a"
+        app:layout_constraintBottom_toTopOf="@+id/button_vibrate_c"
+        app:layout_constraintEnd_toStartOf="@+id/button_vibrate_b"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
         android:id="@+id/button_vibrate_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vibrate_b"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_vibrate_d"
         app:layout_constraintStart_toEndOf="@id/button_vibrate_a"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/button_vibrate_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vibrate_c"
+        app:layout_constraintBottom_toTopOf="@id/button_vibrate_default"
+        app:layout_constraintEnd_toStartOf="@+id/button_vibrate_d"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_vibrate_a" />
+
+    <Button
+        android:id="@+id/button_vibrate_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vibrate_d"
+        app:layout_constraintBottom_toTopOf="@id/button_vibrate_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_vibrate_c"
+        app:layout_constraintTop_toBottomOf="@+id/button_vibrate_b" />
 
     <Button
         android:id="@+id/button_vibrate_default"
@@ -51,5 +71,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_vibrate_a" />
+        app:layout_constraintTop_toBottomOf="@+id/button_vibrate_c" />
 </androidx.constraintlayout.widget.ConstraintLayout>

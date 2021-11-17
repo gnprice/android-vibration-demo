@@ -3,9 +3,10 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
-    <string name="vibrate_a">Vibrate A</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="vibrate_a">Vibrate A</string>
     <string name="vibrate_b">Vibrate B</string>
+    <string name="vibrate_c">Vibrate C</string>
+    <string name="vibrate_d">Vibrate D</string>
     <string name="vibrate_default">Default</string>
 </resources>
