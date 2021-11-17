@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.zulip.vibrationdemo.databinding.FragmentFirstBinding
 
 /**
@@ -31,44 +32,24 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonVibrateA.setOnClickListener {
-            // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
-            vibrate(longArrayOf(0, 100, 50, 250)) // pretty good imitation of Zulip drumroll sound?
-        }
+        // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
 
-        binding.buttonVibrateB.setOnClickListener {
-            vibrate(longArrayOf(0, 125, 75, 250))
-        }
-
-        /*
-        binding.buttonVibrateLater.setOnClickListener {
-            view.handler.postDelayed({ vibrate(0) }, 3000)
-
-            // TODO get this to work after locking screen (so as to put in pocket).
-            // This didn't help:
-//            Handler(Looper.getMainLooper()).postDelayed({ vibrate() }, 3000)
-
-            // Nor this :-/
-//            Thread {
-//                Looper.prepare()
-//                Handler(Looper.myLooper()!!).postDelayed({ vibrate() }, 3000)
-//                Looper.loop()
-//            }
-
-            // Nor this:
-//            vibrate(3000)
-
-            // And indeed, this gets cut off when locking the screen:
-//            requireContext().getSystemService(Vibrator::class.java)
-//                .vibrate(VibrationEffect.createWaveform(longArrayOf(0, 100, 50, 250, 400, 0), 0))
-        }
-        */
+        bindVibrate(binding.buttonVibrateA, longArrayOf(0, 100, 50, 250)) // pretty good imitation of Zulip drumroll sound?
+        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 125, 75, 250))
+        bindVibrate(binding.buttonVibrateDefault, longArrayOf(0, 250, 250, 250)) // Android notif default
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun bindVibrate(button: Button, timings: LongArray) {
+        button.setOnClickListener {
+            vibrate(timings)
+        }
+    }
+
 
     private fun vibrate(timings: LongArray) {
         requireContext().getSystemService(Vibrator::class.java)
