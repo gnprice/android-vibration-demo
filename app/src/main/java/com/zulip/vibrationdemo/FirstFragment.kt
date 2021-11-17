@@ -1,5 +1,6 @@
 package com.zulip.vibrationdemo
 
+import android.media.AudioAttributes
 import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,10 +35,12 @@ class FirstFragment : Fragment() {
 
         // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
 
-        bindVibrate(binding.buttonVibrateA, longArrayOf(0, 100, 50, 250))
-        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 125, 75, 250)) // best?
-        bindVibrate(binding.buttonVibrateC, longArrayOf(0, 125, 75, 175))
-        bindVibrate(binding.buttonVibrateD, longArrayOf(0, 125, 125, 250))
+//        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 25, 50, 250)) // 25ms gets cut off, feels like a stutter
+//        bindVibrate(binding.buttonVibrateC, longArrayOf(0, 50, 75, 250)) // 50ms still feels pretty light
+        bindVibrate(binding.buttonVibrateA, longArrayOf(0, 125, 75, 250)) // best?
+        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 100, 75, 200)) // or better? bit faster
+        bindVibrate(binding.buttonVibrateC, longArrayOf(0, 75, 75, 200))
+        bindVibrate(binding.buttonVibrateD, longArrayOf(0, 100, 75, 250))
         bindVibrate(binding.buttonVibrateDefault, longArrayOf(0, 250, 250, 250)) // Android notif default
     }
 
@@ -56,5 +59,7 @@ class FirstFragment : Fragment() {
     private fun vibrate(timings: LongArray) {
         requireContext().getSystemService(Vibrator::class.java)
             .vibrate(VibrationEffect.createWaveform(timings, -1))
+        // This (and starting with a rest) didn't make the effect survive locking the screen either.
+//                AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION).build())
     }
 }
