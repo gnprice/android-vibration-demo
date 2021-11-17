@@ -1,6 +1,8 @@
 package com.zulip.vibrationdemo
 
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +35,10 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            // do something
+            val timings = longArrayOf(0, 250, 250, 250);
+            val effect = VibrationEffect.createWaveform(timings, -1);
+            val vibrator = requireContext().getSystemService(Vibrator::class.java)
+            vibrator.vibrate(effect)
         }
     }
 
