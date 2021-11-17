@@ -32,11 +32,12 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonVibrate.setOnClickListener {
-            vibrate()
+            vibrate(0)
         }
 
         binding.buttonVibrateLater.setOnClickListener {
-            view.handler.postDelayed({ vibrate() }, 3000)
+            view.handler.postDelayed({ vibrate(0) }, 3000)
+
             // TODO get this to work after locking screen (so as to put in pocket).
             // This didn't help:
 //            Handler(Looper.getMainLooper()).postDelayed({ vibrate() }, 3000)
@@ -47,6 +48,13 @@ class FirstFragment : Fragment() {
 //                Handler(Looper.myLooper()!!).postDelayed({ vibrate() }, 3000)
 //                Looper.loop()
 //            }
+
+            // Nor this:
+//            vibrate(3000)
+
+            // And indeed, this gets cut off when locking the screen:
+//            requireContext().getSystemService(Vibrator::class.java)
+//                .vibrate(VibrationEffect.createWaveform(longArrayOf(0, 100, 50, 250, 400, 0), 0))
         }
     }
 
@@ -55,9 +63,9 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 
-    private fun vibrate() {
+    private fun vibrate(delay: Long) {
 //        val timings = longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
-        val timings = longArrayOf(0, 100, 50, 250); // pretty good imitation of Zulip drumroll sound?
+        val timings = longArrayOf(delay, 100, 50, 250); // pretty good imitation of Zulip drumroll sound?
         requireContext().getSystemService(Vibrator::class.java)
             .vibrate(VibrationEffect.createWaveform(timings, -1))
     }
