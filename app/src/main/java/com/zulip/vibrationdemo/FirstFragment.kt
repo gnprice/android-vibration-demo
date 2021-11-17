@@ -31,10 +31,16 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonVibrate.setOnClickListener {
-            vibrate(0)
+        binding.buttonVibrateA.setOnClickListener {
+            // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
+            vibrate(longArrayOf(0, 100, 50, 250)) // pretty good imitation of Zulip drumroll sound?
         }
 
+        binding.buttonVibrateB.setOnClickListener {
+            vibrate(longArrayOf(0, 125, 75, 250))
+        }
+
+        /*
         binding.buttonVibrateLater.setOnClickListener {
             view.handler.postDelayed({ vibrate(0) }, 3000)
 
@@ -56,6 +62,7 @@ class FirstFragment : Fragment() {
 //            requireContext().getSystemService(Vibrator::class.java)
 //                .vibrate(VibrationEffect.createWaveform(longArrayOf(0, 100, 50, 250, 400, 0), 0))
         }
+        */
     }
 
     override fun onDestroyView() {
@@ -63,9 +70,7 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 
-    private fun vibrate(delay: Long) {
-//        val timings = longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
-        val timings = longArrayOf(delay, 100, 50, 250); // pretty good imitation of Zulip drumroll sound?
+    private fun vibrate(timings: LongArray) {
         requireContext().getSystemService(Vibrator::class.java)
             .vibrate(VibrationEffect.createWaveform(timings, -1))
     }
