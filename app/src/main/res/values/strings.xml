@@ -6,4 +6,5 @@
     <string name="vibrate">Vibrate</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="vibrate_later">Vibrate later</string>
 </resources>

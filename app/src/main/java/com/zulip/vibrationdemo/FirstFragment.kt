@@ -1,8 +1,6 @@
 package com.zulip.vibrationdemo
 
-import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,16 +31,34 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-//            val timings = longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
-            val timings = longArrayOf(0, 100, 50, 250); // pretty good imitation of Zulip drumroll sound?
-            requireContext().getSystemService(Vibrator::class.java)
-                .vibrate(VibrationEffect.createWaveform(timings, -1))
+        binding.buttonVibrate.setOnClickListener {
+            vibrate()
+        }
+
+        binding.buttonVibrateLater.setOnClickListener {
+            view.handler.postDelayed({ vibrate() }, 3000)
+            // TODO get this to work after locking screen (so as to put in pocket).
+            // This didn't help:
+//            Handler(Looper.getMainLooper()).postDelayed({ vibrate() }, 3000)
+
+            // Nor this :-/
+//            Thread {
+//                Looper.prepare()
+//                Handler(Looper.myLooper()!!).postDelayed({ vibrate() }, 3000)
+//                Looper.loop()
+//            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun vibrate() {
+//        val timings = longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
+        val timings = longArrayOf(0, 100, 50, 250); // pretty good imitation of Zulip drumroll sound?
+        requireContext().getSystemService(Vibrator::class.java)
+            .vibrate(VibrationEffect.createWaveform(timings, -1))
     }
 }
