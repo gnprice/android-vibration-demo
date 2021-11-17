@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.zulip.vibrationdemo.databinding.FragmentFirstBinding
 
 /**
@@ -35,10 +34,10 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            val timings = longArrayOf(0, 250, 250, 250);
-            val effect = VibrationEffect.createWaveform(timings, -1);
-            val vibrator = requireContext().getSystemService(Vibrator::class.java)
-            vibrator.vibrate(effect)
+//            val timings = longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
+            val timings = longArrayOf(0, 100, 50, 250); // pretty good imitation of Zulip drumroll sound?
+            requireContext().getSystemService(Vibrator::class.java)
+                .vibrate(VibrationEffect.createWaveform(timings, -1))
         }
     }
 
