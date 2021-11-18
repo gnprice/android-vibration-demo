@@ -33,14 +33,25 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
+        val timings = listOf(
+            // longArrayOf(0, 50, 50, 50, 50, 150); // too fast; gets muddled, on Pixel 4
+//        longArrayOf(0, 25, 50, 250), // 25ms gets cut off, feels like a stutter
+//        longArrayOf(0, 50, 75, 250), // 50ms still feels pretty light
+//        longArrayOf(0, 100, 75, 200), // last proposal
+//        longArrayOf(0, 100, 75, 425), // longer finish, the better to notice on leg
+//            longArrayOf(0, 5, 100, 250), // 5ms about minimum to notice on leg at all
+//            longArrayOf(0, 25, 50, 25, 100, 250), // on leg, can't really distinguish first two buzzes
+//            longArrayOf(0, 15, 70, 15, 100, 250), // ditto
+            longArrayOf(0, 25, 100, 25, 100, 400), // even here
+            longArrayOf(0, 25, 125, 25, 125, 400),
+            longArrayOf(0, 25, 150, 25, 150, 400),
+            longArrayOf(0, 25, 100, 25, 100, 400),
+        )
 
-//        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 25, 50, 250)) // 25ms gets cut off, feels like a stutter
-//        bindVibrate(binding.buttonVibrateC, longArrayOf(0, 50, 75, 250)) // 50ms still feels pretty light
-        bindVibrate(binding.buttonVibrateA, longArrayOf(0, 125, 75, 250)) // best?
-        bindVibrate(binding.buttonVibrateB, longArrayOf(0, 100, 75, 200)) // or better? bit faster
-        bindVibrate(binding.buttonVibrateC, longArrayOf(0, 75, 75, 200))
-        bindVibrate(binding.buttonVibrateD, longArrayOf(0, 100, 75, 250))
+        bindVibrate(binding.buttonVibrateA, timings[0])
+        bindVibrate(binding.buttonVibrateB, timings[1])
+        bindVibrate(binding.buttonVibrateC, timings[2])
+        bindVibrate(binding.buttonVibrateD, timings[3])
         bindVibrate(binding.buttonVibrateDefault, longArrayOf(0, 250, 250, 250)) // Android notif default
     }
 
