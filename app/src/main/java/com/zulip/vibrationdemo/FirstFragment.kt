@@ -40,12 +40,16 @@ class FirstFragment : Fragment() {
 //        longArrayOf(0, 100, 75, 200), // last proposal
 //        longArrayOf(0, 100, 75, 425), // longer finish, the better to notice on leg
 //            longArrayOf(0, 5, 100, 250), // 5ms about minimum to notice on leg at all
+
 //            longArrayOf(0, 25, 50, 25, 100, 250), // on leg, can't really distinguish first two buzzes
 //            longArrayOf(0, 15, 70, 15, 100, 250), // ditto
-            longArrayOf(0, 25, 100, 25, 100, 400), // even here
-            longArrayOf(0, 25, 125, 25, 125, 400),
-            longArrayOf(0, 25, 150, 25, 150, 400),
-            longArrayOf(0, 25, 100, 25, 100, 400),
+//            longArrayOf(0, 25, 100, 25, 100, 400), // even here
+//            longArrayOf(0, 25, 150, 25, 150, 400), // this gets pretty distinguishable, though...
+//                                                   // and totals the same 750ms as the default, ha
+            longArrayOf(0, 35, 140, 35, 140, 350),
+            longArrayOf(0, 35, 105, 35, 105, 420),
+            longArrayOf(0, 70, 70, 35, 105, 420),
+            longArrayOf(0, 35, 105, 70, 70, 420),
         )
 
         bindVibrate(binding.buttonVibrateA, timings[0])
