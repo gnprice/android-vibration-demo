@@ -46,10 +46,24 @@ class FirstFragment : Fragment() {
 //            longArrayOf(0, 25, 100, 25, 100, 400), // even here
 //            longArrayOf(0, 25, 150, 25, 150, 400), // this gets pretty distinguishable, though...
 //                                                   // and totals the same 750ms as the default, ha
-            longArrayOf(0, 35, 140, 35, 140, 350),
-            longArrayOf(0, 35, 105, 35, 105, 420),
-            longArrayOf(0, 70, 70, 35, 105, 420),
-            longArrayOf(0, 35, 105, 70, 70, 420),
+
+//            longArrayOf(0, 35, 140, 35, 140, 350),
+//            longArrayOf(0, 35, 105, 35, 105, 420),
+//            longArrayOf(0, 40, 120, 40, 120, 400),
+//            longArrayOf(0, 70, 70, 35, 105, 420),
+//            longArrayOf(0, 35, 105, 70, 70, 420),
+
+////            longArrayOf(0, 35, 50, 40, 30, 310), // zulip.ogg onsets are around 5ms, 90ms, 160ms
+//            longArrayOf(0, 35, 135, 40, 100, 310), // double those
+//            longArrayOf(0, 35, 135, 60, 80, 310), // stronger second stroke
+////            longArrayOf(0, 35, 135, 80, 60, 310), // stronger still
+//            longArrayOf(0, 39, 150, 67, 89, 344), // another 11% longer; 689ms
+
+            longArrayOf(0, 100, 75, 450), // last proposal, but longer finish; 625ms
+            longArrayOf(0, 125, 100, 450), // and more distinction; 675ms
+//            longArrayOf(0, 35, 135, 60, 80, 310), // zulip.ogg rhythm, slowed; 620ms
+            longArrayOf(0, 39, 150, 67, 89, 344), // zulip.ogg rhythm, slowed; 689ms
+            longArrayOf(0, 40, 120, 40, 120, 400), // simply three strokes; 720ms
         )
 
         bindVibrate(binding.buttonVibrateA, timings[0])
